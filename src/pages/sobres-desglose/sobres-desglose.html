@@ -1,0 +1,103 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-buttons end>
+      <button (click)="salir()" ion-button icon-end>
+        Salir
+      </button>
+    </ion-buttons>
+
+    <ion-title>
+      Desglose
+    </ion-title>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="fondo">
+ 
+  <ion-grid class="cabeceramenu">
+    <ion-row style="height: 100%;">
+      <ion-col>
+        <label style=" color: #ffffff;
+          font-size: larger;
+          /* font-family: -webkit-body; */
+          /* font-stretch: unset; */
+          font-weight: lighter;
+          font: icon;
+          font-weight: bold;
+          position: absolute;
+    bottom: 20px;">Mes de {{sobre.mesnombre}}</label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <h3 style="text-align: center;
+  margin-top: -25px;
+  border-top-left-radius: 60px;
+  border-top-right-radius: 60px;
+  background: #f3f3f3;
+height: 30px;"></h3>
+
+
+  <ion-card *ngFor="let item of percepciones" class="entrada">
+    <ion-card-header>
+      <label class="letra">{{item.descri}}</label>
+      <h4> Movimiento :
+        <strong style="color: #22818b;">
+          <label>Percepción</label>
+        </strong>
+      </h4>
+      <h4> Cantidad :
+        <strong style="color: #8b2222;    font-weight: bold;
+    font-size: large;
+    text-align: end;">{{item.monto | currency}} </strong>
+      </h4>
+    </ion-card-header>
+  </ion-card>
+
+  <ion-item style="text-align: left;
+  background: #f1f1f1;
+  color: #3e8398;
+  font-weight: bold;    font-size: x-large;">
+     Total:
+    {{totalpercepcion|currency}} 
+  </ion-item>
+  <ion-card *ngFor="let item of deducciones" class="salida">
+    <ion-card-content style="text-align: end;" *ngIf="item.dnombre != ''">
+      <label class="letra">{{item.descri}}</label>
+      <h4> Movimiento :
+        <strong style="color: #22818b;">
+          <label>Deducción</label>
+        </strong>
+      </h4>
+      <h4> Cantidad :
+        <strong style="color: #8b2222;    font-weight: bold;
+            font-size: large;
+            text-align: end;">{{item.monto | currency}} </strong>
+      </h4>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-item style="text-align: right;
+  background: #f1f1f1;
+  color: #3e8398;
+  font-weight: bold;    font-size: x-large;">
+      Total: {{totaldeduccion|currency}}
+  </ion-item>
+
+
+  <ion-item style="text-align: center">
+    <p style="    font-size: x-large;
+    font-weight: 500;"> Total:</p> 
+<p style="    color: red;
+font-weight: 500;
+font-size: x-large;">{{cantidad_total | currency}} </p>
+  </ion-item>
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar color="gris" style="text-align: center">
+      <button (click) = "imprimir()" ion-button icon-only color="light" style="width: 80%;">
+        Visualizar en PDF
+      </button>
+    </ion-toolbar>
+  </ion-footer>
